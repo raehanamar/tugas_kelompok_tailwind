@@ -1,0 +1,1427 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timeline of Earth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { outfit: ["Outfit", "sans-serif"] },
+            keyframes: {
+              flyReal: {
+                "0%": {
+                  transform: "translateX(0) translateY(0) rotate(5deg)",
+                  opacity: "0",
+                },
+                "10%": { opacity: "1" },
+                "30%": {
+                  transform: "translateX(40vw) translateY(-20px) rotate(2deg)",
+                },
+                "50%": {
+                  transform: "translateX(70vw) translateY(10px) rotate(-2deg)",
+                },
+                "80%": {
+                  transform:
+                    "translateX(110vw) translateY(-10px) rotate(-5deg)",
+                  opacity: "1",
+                },
+                "100%": {
+                  transform: "translateX(130vw) translateY(0) rotate(-8deg)",
+                  opacity: "0",
+                },
+              },
+              dinoWalk: {
+                "0%,100%": { transform: "translateX(0) rotate(-2deg)" },
+                "50%": { transform: "translateX(20px) rotate(1deg)" },
+              },
+              dinoFloat: {
+                "0%,100%": { transform: "translateY(0) rotate(2deg)" },
+                "50%": { transform: "translateY(-20px) rotate(-2deg)" },
+              },
+              aiGlow: {
+                "0%,100%": {
+                  filter: "drop-shadow(0 0 10px rgba(59,130,246,0.5))",
+                },
+                "50%": { filter: "drop-shadow(0 0 30px rgba(59,130,246,1))" },
+              },
+              bob: {
+                "0%,100%": { transform: "translateY(0) rotate(0deg)" },
+                "50%": { transform: "translateY(-10px) rotate(2deg)" },
+              },
+              moveRight: {
+                from: { transform: "translateX(-50vw)" },
+                to: { transform: "translateX(100vw)" },
+              },
+              wave: {
+                "0%,100%": { transform: "translateX(0) rotate(0deg)" },
+                "50%": { transform: "translateX(-8px) rotate(2deg)" },
+              },
+              glow: {
+                "0%,100%": {
+                  filter: "drop-shadow(0 0 10px rgba(250,204,21,0.4))",
+                },
+                "50%": { filter: "drop-shadow(0 0 30px rgba(250,204,21,0.8))" },
+              },
+              gearSpin: {
+                "0%": { transform: "rotate(0deg)" },
+                "100%": { transform: "rotate(360deg)" },
+              },
+              orbit: {
+                "0%": {
+                  transform: "rotate(0deg) translateX(120px) rotate(0deg)",
+                },
+                "100%": {
+                  transform: "rotate(360deg) translateX(120px) rotate(-360deg)",
+                },
+              },
+              flicker: {
+                "0%,100%": {
+                  textShadow:
+                    "0 0 20px #f97316, 0 0 40px #f97316, 0 0 60px #fbbf24",
+                  transform: "scale(1) rotate(0deg)",
+                },
+                "25%": {
+                  textShadow:
+                    "0 0 15px #f97316, 0 0 30px #fbbf24, 0 0 50px #fde047",
+                  transform: "scale(1.05) rotate(-1deg)",
+                },
+                "50%": {
+                  textShadow:
+                    "0 0 25px #ea580c, 0 0 45px #f59e0b, 0 0 65px #facc15",
+                  transform: "scale(0.98) rotate(1deg)",
+                },
+                "75%": {
+                  textShadow:
+                    "0 0 18px #dc2626, 0 0 35px #f97316, 0 0 55px #fbbf24",
+                  transform: "scale(1.02) rotate(-0.5deg)",
+                },
+              },
+              floatParticle: {
+                "0%,100%": {
+                  transform: "translateY(0px) translateX(0px) rotate(0deg)",
+                  opacity: "0",
+                },
+                "10%": { opacity: "1" },
+                "90%": { opacity: "1" },
+                "100%": {
+                  transform:
+                    "translateY(-100px) translateX(20px) rotate(360deg)",
+                  opacity: "0",
+                },
+              },
+              ripple: {
+                "0%": { transform: "scale(1)", opacity: "0.6" },
+                "100%": { transform: "scale(2)", opacity: "0" },
+              },
+              knightAttack: {
+                "0%,100%": { transform: "translateX(0) scaleX(1)" },
+                "50%": { transform: "translateX(40px) scaleX(-1)" },
+              },
+              swordSwing: {
+                "0%": { transform: "translateX(0) rotate(0deg)" },
+                "50%": { transform: "translateX(60px) rotate(45deg)" },
+                "100%": { transform: "translateX(0) rotate(0deg)" },
+              },
+              sparkFlash: {
+                "0%": { opacity: "0", transform: "scale(1)" },
+                "50%": { opacity: "1" },
+                "100%": { opacity: "0", transform: "scale(0.5)" },
+              },
+              shieldBlock: {
+                "0%,100%": { transform: "rotate(0deg) scale(1)" },
+                "50%": { transform: "rotate(-15deg) scale(1.1)" },
+              },
+              smokeRise: {
+                "0%": {
+                  transform: "translateY(0) scale(0.9)",
+                  opacity: "0.75",
+                },
+                "30%": { opacity: "0.9" },
+                "60%": {
+                  transform: "translateY(-56px) translateX(10px) scale(1.3)",
+                  opacity: "0.45",
+                },
+                "100%": {
+                  transform: "translateY(-96px) translateX(20px) scale(1.7)",
+                  opacity: "0",
+                },
+              },
+              factoryPulse: {
+                "0%,100%": { transform: "translateX(-50%) scale(1)" },
+                "50%": {
+                  transform: "translateX(-50%) scale(1.03) rotate(-0.5deg)",
+                },
+              },
+              magmaBubble: {
+                "0%,100%": {
+                  transform: "translateY(0) scale(1) translateX(0)",
+                  opacity: "0.5",
+                },
+                "25%": {
+                  transform: "translateY(-80px) scale(1.3) translateX(-20px)",
+                  opacity: "0.8",
+                },
+                "50%": {
+                  transform: "translateY(-120px) scale(0.95) translateX(30px)",
+                  opacity: "0.6",
+                },
+                "75%": {
+                  transform: "translateY(-150px) scale(1.15) translateX(-10px)",
+                  opacity: "0.7",
+                },
+              },
+              lavaWave: {
+                "0%,100%": { transform: "translateY(0) scaleY(1)" },
+                "25%": { transform: "translateY(-8px) scaleY(0.95)" },
+                "50%": { transform: "translateY(-15px) scaleY(1.05)" },
+                "75%": { transform: "translateY(-5px) scaleY(0.98)" },
+              },
+              heatWave: {
+                "0%,100%": {
+                  transform: "translateY(0) scaleX(1)",
+                  opacity: "0",
+                },
+                "50%": {
+                  transform: "translateY(-40px) scaleX(1.2)",
+                  opacity: "0.6",
+                },
+              },
+              moltenGlow: {
+                "0%,100%": {
+                  boxShadow:
+                    "0 0 40px rgba(239,68,68,0.6), inset 0 0 60px rgba(249,115,22,0.3)",
+                },
+                "50%": {
+                  boxShadow:
+                    "0 0 80px rgba(239,68,68,0.9), inset 0 0 100px rgba(249,115,22,0.6)",
+                },
+              },
+              lavaCrater: {
+                "0%,100%": { borderWidth: "2px" },
+                "50%": { borderWidth: "4px" },
+              },
+              moltenRipple: {
+                "0%": { transform: "scale(1)", opacity: "0.8" },
+                "100%": { transform: "scale(2)", opacity: "0" },
+              },
+              navGlow: {
+                "0%,100%": { boxShadow: "0 4px 30px rgba(0,0,0,0.1)" },
+                "50%": { boxShadow: "0 10px 45px rgba(250,204,21,0.16)" },
+              },
+              linePulse: {
+                "0%,100%": { opacity: "0.8" },
+                "50%": { opacity: "0.25" },
+              },
+              lightBlink: {
+                "0%,100%": { opacity: "0.3" },
+                "50%": { opacity: "0.9" },
+              },
+              cameraShake: {
+                "0%": { transform: "translate(5px, 5px) rotate(0deg)" },
+                "25%": { transform: "translate(-5px,-5px) rotate(-1deg)" },
+                "50%": { transform: "translate(-5px, 5px) rotate(1deg)" },
+                "75%": { transform: "translate(5px,-5px) rotate(0deg)" },
+                "100%": { transform: "translate(0,0) rotate(0deg)" },
+              },
+              meteorStrike: { to: { top: "60vh", right: "60vw" } },
+              whiteout: { "0%": { opacity: "1" }, "100%": { opacity: "0" } },
+              spin360: {
+                "0%": { transform: "rotate(0deg)" },
+                "100%": { transform: "rotate(360deg)" },
+              },
+              pulse: {
+                "0%": { transform: "scale(1)", opacity: "0.8" },
+                "100%": { transform: "scale(1.1)", opacity: "1" },
+              },
+              float: {
+                "0%,100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              rotateSlow: {
+                "0%": { transform: "rotate(0deg)" },
+                "100%": { transform: "rotate(360deg)" },
+              },
+              stackSway: {
+                "0%,100%": { transform: "translateX(0)" },
+                "50%": { transform: "translateX(2px)" },
+              },
+            },
+            animation: {
+              "fly-real": "flyReal 12s linear infinite",
+              "dino-walk": "dinoWalk 4s ease-in-out infinite",
+              "dino-float": "dinoFloat 5s ease-in-out infinite",
+              "ai-glow": "aiGlow 4s ease-in-out infinite",
+              bob: "bob 4s ease-in-out infinite",
+              "move-right": "moveRight 18s linear infinite",
+              wave: "wave 4s ease-in-out infinite",
+              glow: "glow 3s ease-in-out infinite",
+              "gear-spin": "gearSpin 8s linear infinite",
+              orbit: "orbit 12s linear infinite",
+              "orbit-reverse": "orbit 18s linear infinite reverse",
+              flicker: "flicker 0.22s ease-in-out infinite alternate",
+              "float-particle": "floatParticle 4s ease-in infinite",
+              "float-particle-slow": "floatParticle 5s ease-in infinite 1s",
+              ripple: "ripple 3s ease-out infinite",
+              "ripple-slow": "ripple 3.5s ease-out infinite 0.5s",
+              "knight-attack": "knightAttack 2.2s ease-in-out infinite",
+              "knight-attack-r":
+                "knightAttack 2.2s ease-in-out infinite reverse",
+              "sword-swing": "swordSwing 1.5s ease-in-out infinite",
+              "sword-swing-r": "swordSwing 1.5s ease-in-out infinite reverse",
+              "spark-flash": "sparkFlash 1.2s ease-in-out infinite",
+              "spark-flash-d": "sparkFlash 1.2s ease-in-out infinite 0.3s",
+              "shield-block": "shieldBlock 2s ease-in-out infinite",
+              "shield-block-r": "shieldBlock 2s ease-in-out infinite reverse",
+              "smoke-rise": "smokeRise 4.8s ease-in-out infinite",
+              "smoke-rise-1": "smokeRise 4.8s ease-in-out infinite 0.8s",
+              "smoke-rise-2": "smokeRise 4.8s ease-in-out infinite 1.6s",
+              "factory-pulse": "factoryPulse 6s ease-in-out infinite",
+              "magma-bubble": "magmaBubble 4s ease-in-out infinite alternate",
+              "magma-bubble-d":
+                "magmaBubble 4.5s ease-in-out infinite alternate 1.5s",
+              "lava-wave": "lavaWave 3.5s ease-in-out infinite",
+              "heat-wave": "heatWave 3s ease-in-out infinite",
+              "heat-wave-d": "heatWave 3.5s ease-in-out infinite 0.5s",
+              "molten-glow": "moltenGlow 2.5s ease-in-out infinite",
+              "lava-crater": "lavaCrater 4s ease-in-out infinite",
+              "molten-ripple": "moltenRipple 3s ease-out infinite",
+              "molten-ripple-d": "moltenRipple 3.5s ease-out infinite 0.7s",
+              "nav-glow": "navGlow 8s ease-in-out infinite",
+              "line-pulse": "linePulse 8s ease-in-out infinite",
+              "light-blink": "lightBlink 2s ease-in-out infinite",
+              "light-blink-d": "lightBlink 3s ease-in-out infinite 1s",
+              "camera-shake": "cameraShake 0.4s infinite",
+              "spin-360": "spin360 8s linear infinite",
+              "pulse-slow": "pulse 4s alternate infinite",
+              "pulse-fast": "pulse 0.5s alternate infinite",
+              float: "float 4s ease-in-out infinite",
+              "float-slow": "float 6s ease-in-out infinite",
+              "rotate-slow": "rotateSlow 8s linear infinite",
+              "rotate-slow-r": "rotateSlow 6s linear infinite reverse",
+              "stack-sway": "stackSway 8s ease-in-out infinite",
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Hal-hal yang tidak bisa dilakukan Tailwind */
+      .noise-overlay {
+        background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+      }
+      .fade-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .plane::after {
+        content: "";
+        position: absolute;
+        right: -50px;
+        top: 42%;
+        width: 140px;
+        height: 8px;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.45),
+          rgba(255, 255, 255, 0.05)
+        );
+        filter: blur(2px);
+        opacity: 0.8;
+        border-radius: 999px;
+        transform: translateX(-50%) rotate(-6deg);
+      }
+
+      /* Era top/bottom fade */
+      .era::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 140px;
+        background: linear-gradient(
+          to bottom,
+          rgba(15, 23, 42, 0.92),
+          transparent
+        );
+        pointer-events: none;
+        z-index: 2;
+      }
+      .era::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 140px;
+        background: linear-gradient(
+          to top,
+          rgba(15, 23, 42, 0.92),
+          transparent
+        );
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      /* Era backgrounds — pakai Unsplash, semua publik */
+      #era-modern {
+        background:
+          linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.72)),
+          url("foto/zamanmodern.png") center/cover;
+      }
+      #era-industrial {
+        background:
+          linear-gradient(rgba(10, 10, 10, 0.55), rgba(10, 10, 10, 0.55)),
+          url("foto/industri.png") center/cover;
+      }
+      #era-exploration {
+        background:
+          linear-gradient(rgba(6, 36, 61, 0.72), rgba(6, 36, 61, 0.72)),
+          url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80")
+            center/cover;
+      }
+      #era-kingdom {
+        background:
+          linear-gradient(rgba(8, 20, 31, 0.72), rgba(8, 20, 31, 0.72)),
+          url("foto/kerajaan.png") center/cover;
+      }
+      #era-prehistoric {
+        background:
+          linear-gradient(rgba(34, 15, 5, 0.72), rgba(34, 15, 5, 0.72)),
+          url("foto/api.png") center/cover;
+      }
+      #era-extinction {
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)),
+          url("https://images.unsplash.com/photo-1559121635-4d3c20f0d578?auto=format&fit=crop&w=1400&q=80")
+            center/cover;
+      }
+      #era-dinosaur {
+        background:
+          linear-gradient(rgba(2, 35, 24, 0.72), rgba(2, 35, 24, 0.72)),
+          url("foto/dinosaurus.png") center/cover;
+      }
+      #era-early-earth {
+        background:
+          linear-gradient(rgba(30, 5, 2, 0.65), rgba(25, 2, 0, 0.7)),
+          url("foto/bumi-muda.png") center/cover;
+      }
+      #era-space {
+        background: url("foto/tata-surya.png") center/cover;
+      }
+      /* Meteor */
+      .meteor {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background: radial-gradient(circle at 30% 30%, #a3a3a3, #444);
+        border-radius: 50%;
+        top: -20vh;
+        right: -10vw;
+        box-shadow:
+          0 0 30px rgba(255, 120, 0, 0.8),
+          0 0 60px rgba(255, 60, 0, 0.5);
+        transform: rotate(-45deg);
+        opacity: 0;
+        z-index: 100;
+      }
+      .meteor::after {
+        content: "";
+        position: absolute;
+        width: 120px;
+        height: 20px;
+        left: -100px;
+        top: 20px;
+        background: linear-gradient(
+          to left,
+          rgba(255, 120, 0, 0.9),
+          rgba(255, 60, 0, 0.6),
+          rgba(255, 0, 0, 0)
+        );
+        filter: blur(8px);
+        border-radius: 50%;
+      }
+      .meteor.fall {
+        animation: meteorStrike 1s cubic-bezier(0.7, 0, 1, 1) forwards;
+        opacity: 1;
+      }
+      @keyframes meteorStrike {
+        to {
+          top: 60vh;
+          right: 60vw;
+        }
+      }
+
+      .shake {
+        animation: cameraShake 0.4s infinite;
+      }
+      @keyframes cameraShake {
+        0% {
+          transform: translate(5px, 5px) rotate(0deg);
+        }
+        25% {
+          transform: translate(-5px, -5px) rotate(-1deg);
+        }
+        50% {
+          transform: translate(-5px, 5px) rotate(1deg);
+        }
+        75% {
+          transform: translate(5px, -5px) rotate(0deg);
+        }
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+      }
+
+      .lava-particle {
+        animation: lavaErupt 2.5s ease-out infinite;
+      }
+      @keyframes lavaErupt {
+        0% {
+          transform: translate(0, 0) scale(1);
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translate(var(--tx), var(--ty)) scale(0.1);
+          opacity: 0;
+        }
+      }
+
+      .flash {
+        animation: whiteout 2s cubic-bezier(0.1, 0.8, 0.1, 1) forwards;
+      }
+      @keyframes whiteout {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .era-title {
+          font-size: 3rem !important;
+        }
+        .content {
+          text-align: center !important;
+          padding: 0 20px !important;
+          margin: 0 auto !important;
+        }
+        #extinction-text {
+          opacity: 0 !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    class="font-outfit bg-slate-900 text-slate-50"
+    style="overflow-x: hidden; overflow-y: auto"
+  >
+    <!-- Noise -->
+    <div
+      class="noise-overlay fixed inset-0 pointer-events-none z-[9999] opacity-[0.04]"
+    ></div>
+
+    <!-- Flash -->
+    <div
+      id="flash-effect"
+      class="fixed inset-0 bg-white opacity-0 pointer-events-none z-[998]"
+    ></div>
+
+    <!-- Navbar -->
+    <nav
+      class="fixed top-[30px] left-1/2 -translate-x-1/2 bg-white/[0.03] backdrop-blur-xl border border-white/10 px-[30px] py-3 rounded-full z-[1000] text-center animate-nav-glow"
+    >
+      <div
+        class="text-xl font-black tracking-[2px] uppercase text-white"
+        id="year-text"
+      >
+        2026
+      </div>
+      <div
+        class="w-[100px] h-[3px] bg-white/10 mx-auto mt-2 rounded-full overflow-hidden"
+      >
+        <div
+          id="progress"
+          class="h-full bg-white transition-[width] duration-100 ease-out"
+          style="width: 0%"
+        ></div>
+      </div>
+    </nav>
+
+    <!-- Timeline center line -->
+    <div
+      class="fixed top-0 left-1/2 -translate-x-1/2 w-px h-screen pointer-events-none z-0 animate-line-pulse"
+      style="
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(255, 255, 255, 0.1) 20%,
+          rgba(255, 255, 255, 0.1) 80%,
+          transparent
+        );
+      "
+    ></div>
+
+    <main id="world-wrapper" class="w-full">
+      <!-- 1. MODERN -->
+      <section
+        class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
+        id="era-modern"
+        data-year="2026"
+        data-bg="#0f172a"
+      >
+        <div
+          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 -z-[1] bg-blue-500 top-[20%] left-[20%]"
+        ></div>
+        <div class="content max-w-[600px] z-10 relative text-center">
+          <p
+            class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
+          >
+            Masa Kini
+          </p>
+          <h1
+            class="fade-up text-[clamp(2.5rem,6vw,4.5rem)] font-black leading-[1.1] mb-5 -tracking-[1px]"
+          >
+            Zaman Modern
+          </h1>
+          <p class="fade-up text-xl font-light text-white/70 leading-relaxed">
+            Era konektivitas digital, kecerdasan buatan, dan gedung pencakar
+            langit yang menembus awan.
+          </p>
+        </div>
+        <div
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+        >
+          >
+          <span
+            class="plane absolute text-[4rem] top-[-180px] left-[-20vw] z-20 animate-fly-real"
+            style="filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.7))"
+            >✈️</span
+          >
+          <span
+            class="absolute left-[15%] bottom-[25%] text-[6rem] animate-ai-glow"
+            >🤖</span
+          >
+          <span
+            class="absolute right-[25%] bottom-[-15px] text-[9rem] animate-light-blink-d"
+            >🏢</span
+          >
+          <div
+            class="absolute w-[60px] h-[60px] left-[10%] bottom-[30%] animate-float-particle rounded-full"
+            style="
+              background: radial-gradient(
+                circle,
+                rgba(59, 130, 246, 0.4),
+                transparent
+              );
+            "
+          ></div>
+          <div
+            class="absolute w-[40px] h-[40px] right-[15%] bottom-[25%] animate-float-particle-slow rounded-full"
+            style="
+              background: radial-gradient(
+                circle,
+                rgba(59, 130, 246, 0.3),
+                transparent
+              );
+            "
+          ></div>
+        </div>
+      </section>
+
+      <!-- 2. INDUSTRIAL -->
+      <section
+        class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
+        id="era-industrial"
+        data-year="1800 Masehi"
+        data-bg="#1c1917"
+      >
+        <div
+          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 -z-[1] bg-orange-500 bottom-[10%] right-[10%]"
+        ></div>
+        <div
+          class="content max-w-[600px] z-10 relative text-left mr-auto pl-[10%]"
+        >
+          <p
+            class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
+          >
+            Revolusi
+          </p>
+          <h1
+            class="fade-up text-[clamp(2.5rem,6vw,4.5rem)] font-black leading-[1.1] mb-5 -tracking-[1px]"
+          >
+            Zaman Industri
+          </h1>
+          <p class="fade-up text-xl font-light text-white/70 leading-relaxed">
+            Mesin uap dan pabrik mengubah wajah bumi untuk selamanya. Asap
+            menutupi langit biru.
+          </p>
+        </div>
+        <div
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+        >
+          <span
+            class="absolute text-[12rem] left-1/2 bottom-0 -translate-x-1/2 animate-factory-pulse"
+            style="
+              animation:
+                glow 4s ease-in-out infinite,
+                factoryPulse 6s ease-in-out infinite;
+            "
+            >🏭</span
+          >
+          <span class="absolute right-[15%] bottom-[5%] text-[5rem] animate-bob"
+            >👷</span
+          >
+          <span
+            class="absolute text-[4rem] opacity-90 animate-gear-spin"
+            style="left: 62%; bottom: 35%"
+            >⚙️</span
+          >
+          <span
+            class="absolute text-[6rem] animate-move-right"
+            style="left: -10%; bottom: 10px"
+            >🚂</span
+          >
+          <!-- Smoke stack -->
+          <div
+            class="absolute animate-stack-sway"
+            style="
+              left: 60%;
+              bottom: 6%;
+              width: 24px;
+              height: 110px;
+              background: linear-gradient(
+                to top,
+                rgba(75, 75, 75, 0.95),
+                rgba(148, 163, 184, 0.75)
+              );
+              border-radius: 18px;
+              box-shadow:
+                inset 0 0 12px rgba(0, 0, 0, 0.4),
+                0 0 10px rgba(0, 0, 0, 0.18);
+            "
+          >
+            <span
+              class="absolute rounded-full blur-[2.5px] opacity-80 animate-smoke-rise"
+              style="
+                left: -10px;
+                bottom: 70px;
+                width: 22px;
+                height: 22px;
+                background: radial-gradient(
+                  circle,
+                  rgba(229, 231, 235, 0.9),
+                  rgba(148, 163, 184, 0.35) 45%,
+                  transparent 70%
+                );
+              "
+            ></span>
+            <span
+              class="absolute rounded-full blur-[2.5px] opacity-80 animate-smoke-rise-1"
+              style="
+                left: -12px;
+                bottom: 42px;
+                width: 24px;
+                height: 24px;
+                background: radial-gradient(
+                  circle,
+                  rgba(229, 231, 235, 0.9),
+                  rgba(148, 163, 184, 0.35) 45%,
+                  transparent 70%
+                );
+              "
+            ></span>
+            <span
+              class="absolute rounded-full blur-[2.5px] opacity-80 animate-smoke-rise-2"
+              style="
+                left: 2px;
+                bottom: 12px;
+                width: 18px;
+                height: 18px;
+                background: radial-gradient(
+                  circle,
+                  rgba(229, 231, 235, 0.9),
+                  rgba(148, 163, 184, 0.35) 45%,
+                  transparent 70%
+                );
+              "
+            ></span>
+          </div>
+          <div
+            class="absolute w-[80px] h-[80px] rounded-full animate-rotate-slow"
+            style="
+              right: 25%;
+              top: 20%;
+              border: 4px solid rgba(249, 115, 22, 0.3);
+            "
+          ></div>
+          <div
+            class="absolute w-[60px] h-[60px] rounded-full animate-rotate-slow-r"
+            style="
+              right: 32%;
+              top: 28%;
+              border: 3px solid rgba(249, 115, 22, 0.2);
+            "
+          ></div>
+        </div>
+      </section>
+
+      <!-- 3. EXPLORATION -->
+      <section
+        class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
+        id="era-exploration"
+        data-year="1500 Masehi"
+        data-bg="#082f49"
+      >
+        <div
+          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 -z-[1] bg-cyan-500 top-[30%] left-[50%]"
+        ></div>
+        <div
+          class="content max-w-[600px] z-10 relative text-right ml-auto pr-[10%]"
+        >
+          <p
+            class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
+          >
+            Samudra Tak Bertepi
+          </p>
+          <h1
+            class="fade-up text-[clamp(2.5rem,6vw,4.5rem)] font-black leading-[1.1] mb-5 -tracking-[1px]"
+          >
+            Era Penjelajahan
+          </h1>
+          <p class="fade-up text-xl font-light text-white/70 leading-relaxed">
+            Manusia menantang badai, memetakan benua baru dengan kapal kayu dan
+            kompas.
+          </p>
+        </div>
+        <div
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+        >
+          <span class="absolute text-[10rem] animate-wave" style="top: -150px"
+            >⛵</span
+          >
+          <div
+            class="absolute w-[120px] h-[120px] rounded-full animate-ripple"
+            style="
+              left: 20%;
+              bottom: 15%;
+              border: 2px solid rgba(59, 130, 246, 0.3);
+            "
+          ></div>
+          <div
+            class="absolute w-[150px] h-[150px] rounded-full animate-ripple-slow"
+            style="
+              right: 15%;
+              bottom: 10%;
+              border: 2px solid rgba(6, 182, 212, 0.3);
+            "
+          ></div>
+        </div>
+      </section>
+
+      <!-- 4. KINGDOM -->
+      <section
+        class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
+        id="era-kingdom"
+        data-year="1000 Masehi"
+        data-bg="#14532d"
+      >
+        <div
+          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 -z-[1] bg-green-500 bottom-[20%] right-[30%]"
+        ></div>
+        <div
+          class="content max-w-[600px] z-10 relative text-left mr-auto pl-[10%]"
+        >
+          <p
+            class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
+          >
+            Abad Pertengahan
+          </p>
+          <h1
+            class="fade-up text-[clamp(2.5rem,6vw,4.5rem)] font-black leading-[1.1] mb-5 -tracking-[1px]"
+          >
+            Zaman Kerajaan
+          </h1>
+          <p class="fade-up text-xl font-light text-white/70 leading-relaxed">
+            Kastil batu berdiri kokoh. Ksatria bertarung demi kehormatan, tanah,
+            dan raja.
+          </p>
+        </div>
+        <div
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+        >
+          <span
+            class="absolute right-[20%] bottom-[20px] text-[5rem] animate-bob"
+            >🐎</span
+          >
+          <span
+            class="absolute text-[6rem] animate-knight-attack"
+            style="
+              left: 15%;
+              bottom: 20%;
+              filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+            "
+            >🤺</span
+          >
+          <span
+            class="absolute text-[6rem] animate-knight-attack-r"
+            style="
+              right: 18%;
+              bottom: 20%;
+              filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+            "
+            >🤺</span
+          >
+          <div
+            class="absolute w-[50px] h-[50px] rounded-full blur-[2px] animate-spark-flash"
+            style="
+              left: 45%;
+              bottom: 35%;
+              background: radial-gradient(
+                circle,
+                rgba(255, 215, 0, 0.8),
+                transparent
+              );
+            "
+          ></div>
+          <div
+            class="absolute w-[40px] h-[40px] rounded-full blur-[1px] animate-spark-flash-d"
+            style="
+              left: 48%;
+              bottom: 32%;
+              background: radial-gradient(
+                circle,
+                rgba(255, 165, 0, 0.7),
+                transparent
+              );
+            "
+          ></div>
+          <span
+            class="absolute text-[4rem] animate-sword-swing"
+            style="
+              left: 20%;
+              bottom: 35%;
+              transform-origin: right center;
+              filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+            "
+            >⚔️</span
+          >
+          <span
+            class="absolute text-[4rem] animate-sword-swing-r"
+            style="
+              right: 22%;
+              bottom: 35%;
+              transform-origin: left center;
+              filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+            "
+            >⚔️</span
+          >
+          <span
+            class="absolute text-[5rem] animate-shield-block"
+            style="
+              left: 12%;
+              bottom: 22%;
+              filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            "
+            >🛡️</span
+          >
+          <span
+            class="absolute text-[5rem] animate-shield-block-r"
+            style="
+              right: 15%;
+              bottom: 22%;
+              filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            "
+            >🛡️</span
+          >
+        </div>
+      </section>
+
+      <!-- 5. PREHISTORIC -->
+      <section
+        class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
+        id="era-prehistoric"
+        data-year="10.000 SM"
+        data-bg="#451a03"
+      >
+        <div
+          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 -z-[1] bg-red-500 top-[40%] left-[10%]"
+        ></div>
+        <div
+          class="content max-w-[600px] z-10 relative text-right ml-auto pr-[10%]"
+        >
+          <p
+            class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
+          >
+            Awal Peradaban
+          </p>
+          <h1
+            class="fade-up text-[clamp(2.5rem,6vw,4.5rem)] font-black leading-[1.1] mb-5 -tracking-[1px]"
+          >
+            Zaman Prasejarah
+          </h1>
+          <p class="fade-up text-xl font-light text-white/70 leading-relaxed">
+            Penemuan api menerangi kegelapan malam. Manusia mulai membentuk
+            kelompok dan bertahan hidup.
+          </p>
+        </div>
+        <div
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+        >
+          <div
+            class="absolute w-[100px] h-[100px] bg-orange-500 rounded-full blur-[40px] right-[30%] bottom-[30px] animate-pulse-fast"
+          ></div>
+          <span
+            class="absolute right-[30%] bottom-[10px] text-[6rem] animate-float"
+            >🧌</span
+          >
+          <span
+            class="absolute text-[6.8rem] bottom-[80px] animate-flicker"
+            style="filter: drop-shadow(0 0 20px rgba(249, 115, 22, 0.8))"
+            >🔥</span
+          >
+          <div
+            class="absolute w-[30px] h-[30px] rounded-full animate-float-particle"
+            style="
+              left: 42%;
+              bottom: 20%;
+              background: radial-gradient(
+                circle,
+                rgba(249, 115, 22, 0.6),
+                transparent
+              );
+            "
+          ></div>
+        </div>
+      </section>
+
+      <!-- 6. EXTINCTION -->
+      <section
+        class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
+        id="era-extinction"
+        data-year="66 Juta Tahun Lalu"
+        data-bg="#000000"
+      >
+        <div
+          class="content max-w-[600px] z-10 relative text-center"
+          id="extinction-text"
+        >
+          <p
+            class="fade-up text-sm font-black uppercase tracking-[4px] text-red-500 mb-2.5"
+          >
+            Kiamat Pertama
+          </p>
+          <h1
+            class="fade-up text-[clamp(2.5rem,6vw,4.5rem)] font-black leading-[1.1] mb-5 -tracking-[1px]"
+          >
+            Kepunahan Massal
+          </h1>
+          <p class="fade-up text-xl font-light text-white/70 leading-relaxed">
+            Sebuah asteroid selebar 10 km menghantam bumi, mengakhiri era
+            dinosaurus dalam sekejap.
+          </p>
+        </div>
+        <div class="meteor" id="the-meteor"></div>
+        <div
+          class="absolute w-[100px] h-[100px] rounded-full animate-float-particle"
+          style="
+            top: 30%;
+            left: 20%;
+            background: radial-gradient(
+              circle,
+              rgba(239, 68, 68, 0.3),
+              transparent
+            );
+            animation-delay: 0.5s;
+          "
+        ></div>
+        <div
+          class="absolute w-[80px] h-[80px] rounded-full"
+          style="
+            top: 50%;
+            right: 15%;
+            background: radial-gradient(
+              circle,
+              rgba(239, 68, 68, 0.2),
+              transparent
+            );
+            animation: floatParticle 3.5s ease-in infinite 1s;
+          "
+        ></div>
+      </section>
+
+      <!-- 7. DINOSAUR -->
+      <section
+        class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
+        id="era-dinosaur"
+        data-year="252 Juta Tahun Lalu"
+        data-bg="#064e3b"
+      >
+        <div
+          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 -z-[1] bg-emerald-500 top-[10%] right-[20%]"
+        ></div>
+        <div class="content max-w-[600px] z-10 relative text-center">
+          <p
+            class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
+          >
+            Penguasa Bumi
+          </p>
+          <h1
+            class="fade-up text-[clamp(2.5rem,6vw,4.5rem)] font-black leading-[1.1] mb-5 -tracking-[1px]"
+          >
+            Era Dinosaurus
+          </h1>
+          <p class="fade-up text-xl font-light text-white/70 leading-relaxed">
+            Reptil raksasa mendominasi rantai makanan di hutan tropis yang
+            lebat.
+          </p>
+        </div>
+        <div
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+        >
+          <span
+            class="absolute left-[5%] bottom-[-10px] text-[13rem] z-[2] animate-dino-walk"
+            style="transform: rotate(-2deg)"
+            >🦖</span
+          >
+          <span
+            class="absolute right-[5%] bottom-[20px] text-[8rem] z-[2] animate-dino-float"
+            style="transform: rotate(2deg)"
+            >🦕</span
+          >
+          <div
+            class="absolute w-[60px] h-[60px] rounded-full animate-ripple"
+            style="
+              left: 30%;
+              bottom: 12%;
+              border: 2px solid rgba(16, 185, 129, 0.3);
+            "
+          ></div>
+        </div>
+      </section>
+
+      <!-- 8. EARLY EARTH -->
+      <section
+        class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
+        id="era-early-earth"
+        data-year="4.5 Miliar Tahun Lalu"
+        data-bg="#2a0604"
+      >
+        <div
+          class="absolute w-[800px] h-[800px] rounded-full blur-[100px] opacity-30 -z-[1] pointer-events-none bg-red-600 -bottom-[10%] left-1/2 -translate-x-1/2"
+        ></div>
+        <div
+          class="content max-w-[600px] z-10 relative text-left mr-auto pl-[10%]"
+          style="top: -120px"
+        >
+          <p
+            class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
+          >
+            Neraka Kosmik
+          </p>
+          <h1
+            class="fade-up text-[clamp(2.5rem,6vw,4.5rem)] font-black leading-[1.1] mb-5 -tracking-[1px]"
+          >
+            Bumi Muda
+          </h1>
+          <p class="fade-up text-xl font-light text-white/70 leading-relaxed">
+            Lautan magma mendidih. Belum ada kehidupan. Permukaan bumi terus
+            dibombardir meteorit.
+          </p>
+        </div>
+        <div
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+        >
+          <div
+            class="absolute bottom-0 w-full h-[200px] z-[1] animate-lava-wave"
+            style="
+              background: linear-gradient(
+                180deg,
+                rgba(239, 68, 68, 0.8) 0%,
+                rgba(249, 115, 22, 0.6) 40%,
+                rgba(234, 88, 12, 0.5) 100%
+              );
+            "
+          ></div>
+          <div
+            class="absolute bottom-0 w-[200px] h-[100px] bg-red-500 rounded-[50%] blur-[30px] animate-magma-bubble"
+          ></div>
+          <div
+            class="absolute bottom-0 left-[30%] w-[300px] h-[100px] bg-orange-600 rounded-[50%] blur-[30px] animate-magma-bubble-d"
+          ></div>
+          <div
+            class="lava-particle absolute w-[40px] h-[40px] rounded-full blur-[1px]"
+            style="
+              left: 25%;
+              bottom: 25%;
+              background: radial-gradient(
+                circle,
+                rgba(239, 68, 68, 0.9),
+                transparent
+              );
+              --tx: -150px;
+              --ty: -200px;
+            "
+          ></div>
+          <div
+            class="lava-particle absolute w-[35px] h-[35px] rounded-full blur-[1px]"
+            style="
+              left: 50%;
+              bottom: 20%;
+              background: radial-gradient(
+                circle,
+                rgba(249, 115, 22, 0.85),
+                transparent
+              );
+              --tx: 100px;
+              --ty: -180px;
+              animation-delay: 0.3s;
+            "
+          ></div>
+          <div
+            class="lava-particle absolute w-[45px] h-[45px] rounded-full blur-[1px]"
+            style="
+              right: 20%;
+              bottom: 30%;
+              background: radial-gradient(
+                circle,
+                rgba(239, 68, 68, 0.8),
+                transparent
+              );
+              --tx: 120px;
+              --ty: -220px;
+              animation-delay: 0.6s;
+            "
+          ></div>
+          <div
+            class="absolute w-[200px] h-[200px] rounded-full animate-heat-wave z-0"
+            style="
+              left: 20%;
+              top: 40%;
+              border: 3px solid rgba(249, 115, 22, 0.4);
+            "
+          ></div>
+          <div
+            class="absolute w-[150px] h-[150px] rounded-full animate-heat-wave-d z-0"
+            style="
+              right: 25%;
+              top: 50%;
+              border: 2px solid rgba(239, 68, 68, 0.3);
+            "
+          ></div>
+          <div
+            class="absolute w-[120px] h-[120px] rounded-full animate-lava-crater z-[2]"
+            style="
+              left: 35%;
+              bottom: 18%;
+              border: 3px solid rgba(239, 68, 68, 0.6);
+              box-shadow: inset 0 0 40px rgba(249, 115, 22, 0.5);
+            "
+          ></div>
+          <div
+            class="absolute w-[180px] h-[180px] rounded-full animate-molten-glow z-[1]"
+            style="
+              right: 20%;
+              bottom: 15%;
+              background: radial-gradient(
+                circle,
+                rgba(239, 68, 68, 0.5),
+                transparent
+              );
+            "
+          ></div>
+          <div
+            class="absolute w-[100px] h-[100px] rounded-full animate-molten-ripple z-[2]"
+            style="
+              left: 45%;
+              bottom: 12%;
+              border: 2px solid rgba(249, 115, 22, 0.4);
+            "
+          ></div>
+          <div
+            class="absolute w-[130px] h-[130px] rounded-full animate-molten-ripple-d z-[1]"
+            style="
+              left: 42%;
+              bottom: 8%;
+              border: 2px solid rgba(239, 68, 68, 0.3);
+            "
+          ></div>
+        </div>
+      </section>
+
+      <!-- 9. SPACE -->
+      <section
+        class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
+        id="era-space"
+        data-year="4.6 Miliar Tahun Lalu"
+        data-bg="#020617"
+      >
+        <div
+          class="absolute inset-0"
+          style="
+            background: radial-gradient(
+              circle at center,
+              #0f172a 0%,
+              #020617 100%
+            );
+          "
+        ></div>
+        <div class="content max-w-[600px] z-10 relative text-center">
+          <p
+            class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
+          >
+            Awal Segalanya
+          </p>
+          <h1
+            class="fade-up text-[clamp(2.5rem,6vw,4.5rem)] font-black leading-[1.1] mb-5 -tracking-[1px]"
+            style="text-shadow: 0 0 30px rgba(255, 255, 255, 0.5)"
+          >
+            Kelahiran Tata Surya
+          </h1>
+          <p class="fade-up text-xl font-light text-white/70 leading-relaxed">
+            Debu dan gas kosmik runtuh membentuk bintang raksasa yang
+            menyala—Matahari kita.
+          </p>
+        </div>
+        <!-- Sun -->
+        <div
+          class="absolute w-[300px] h-[300px] bg-white rounded-full animate-spin-360 animate-pulse-slow z-0"
+          style="
+            top: 46%;
+            left: 62%;
+            transform: translate(-50%, -50%);
+            box-shadow:
+              0 0 100px #fef08a,
+              0 0 200px #f59e0b,
+              0 0 400px #ea580c;
+            opacity: 0.8;
+          "
+        ></div>
+        <!-- Orbiting planets -->
+        <div
+          class="absolute w-[40px] h-[40px] rounded-full animate-orbit"
+          style="
+            top: 50%;
+            left: 50%;
+            background: radial-gradient(
+              circle,
+              rgba(3, 102, 214, 0.8),
+              transparent
+            );
+            transform-origin: 0 0;
+          "
+        ></div>
+        <div
+          class="absolute w-[30px] h-[30px] rounded-full animate-orbit-reverse"
+          style="
+            top: 50%;
+            left: 50%;
+            background: radial-gradient(
+              circle,
+              rgba(139, 92, 246, 0.6),
+              transparent
+            );
+            transform-origin: 0 0;
+          "
+        ></div>
+      </section>
+    </main>
+
+    <script>
+      // ── 1. SCROLL REVEAL (Fade Up) ──
+      const fadeElements = document.querySelectorAll(".fade-up");
+      const fadeObserver = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          }),
+        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+      );
+      fadeElements.forEach((el) => fadeObserver.observe(el));
+
+      // ── 2. SCROLL TRACKER: progress bar + year + bg color ──
+      const eras = document.querySelectorAll(".era");
+      const yearText = document.getElementById("year-text");
+      const progressBar = document.getElementById("progress");
+
+      window.addEventListener("scroll", () => {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        progressBar.style.width = (scrollTop / scrollHeight) * 100 + "%";
+
+        eras.forEach((era) => {
+          const rect = era.getBoundingClientRect();
+          if (
+            rect.top <= window.innerHeight / 2 &&
+            rect.bottom >= window.innerHeight / 2
+          ) {
+            yearText.innerText = era.dataset.year;
+            document.body.style.backgroundColor = era.dataset.bg;
+          }
+        });
+      });
+
+      // ── 3. METEOR STRIKE CINEMATIC ──
+      const extinctionSection = document.getElementById("era-extinction");
+      const meteor = document.getElementById("the-meteor");
+      const wrapper = document.getElementById("world-wrapper");
+      const flash = document.getElementById("flash-effect");
+      const textExtinction = document.getElementById("extinction-text");
+      let hasMeteorFallen = false;
+
+      const meteorObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !hasMeteorFallen) {
+              hasMeteorFallen = true;
+
+              // 1. Meteor mulai jatuh
+              meteor.classList.add("fall");
+
+              // 2. Setelah meteor kena (impact)
+              setTimeout(() => {
+                meteor.style.display = "none";
+                flash.classList.add("flash");
+                wrapper.classList.add("shake");
+              }, 1000);
+
+              // 3. Stop shake (biar ada jeda)
+              setTimeout(() => {
+                wrapper.classList.remove("shake");
+              }, 1800);
+
+              // 4. BARU munculkan teks (lebih telat biar dramatis)
+              setTimeout(() => {
+                textExtinction.style.transition = "opacity 2.5s ease";
+                textExtinction.style.opacity = "1";
+              }, 2200);
+            }
+          });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -10% 0px" },
+      );
+      meteorObserver.observe(extinctionSection);
+    </script>
+  </body>
+</html>
