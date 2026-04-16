@@ -420,7 +420,9 @@
           url("foto/bumi-muda.png") center/cover;
       }
       #era-space {
-        background: url("foto/tata-surya.png") center/cover;
+        background:
+          linear-gradient(rgba(2, 6, 23, 0.2), rgba(2, 6, 23, 0.6)),
+          url("foto/tata-surya.png") center/cover;
       }
       /* Meteor */
       .meteor {
@@ -1014,7 +1016,7 @@
         </div>
       </section>
 
-      <!-- 6. EXTINCTION -->
+      <!--6.EXTINCTION-->
       <section
         class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
         id="era-extinction"
@@ -1069,7 +1071,7 @@
         ></div>
       </section>
 
-      <!-- 7. DINOSAUR -->
+      <!--7.DINOSAUR-->
       <section
         class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
         id="era-dinosaur"
@@ -1119,7 +1121,7 @@
         </div>
       </section>
 
-      <!-- 8. EARLY EARTH -->
+      <!-- 8.EARLY EARTH-->
       <section
         class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
         id="era-early-earth"
@@ -1268,7 +1270,7 @@
         </div>
       </section>
 
-      <!-- 9. SPACE -->
+      <!--9.SPACE-->
       <section
         class="era relative w-screen min-h-screen flex items-center justify-center z-[1] px-[5%] overflow-hidden"
         id="era-space"
@@ -1347,7 +1349,7 @@
     </main>
 
     <script>
-      // ── 1. SCROLL REVEAL (Fade Up) ──
+      //1.SCROLL REVEAL (Fade Up
       const fadeElements = document.querySelectorAll(".fade-up");
       const fadeObserver = new IntersectionObserver(
         (entries) =>
@@ -1382,7 +1384,7 @@
         });
       });
 
-      // ── 3. METEOR STRIKE CINEMATIC ──
+      //3.METEOR STRIKE CINEMATIC
       const extinctionSection = document.getElementById("era-extinction");
       const meteor = document.getElementById("the-meteor");
       const wrapper = document.getElementById("world-wrapper");
@@ -1396,22 +1398,22 @@
             if (entry.isIntersecting && !hasMeteorFallen) {
               hasMeteorFallen = true;
 
-              // 1. Meteor mulai jatuh
+              // 1. Meteor jatuh
               meteor.classList.add("fall");
 
-              // 2. Setelah meteor kena (impact)
+              // 2. Setelah meteor kena
               setTimeout(() => {
                 meteor.style.display = "none";
                 flash.classList.add("flash");
                 wrapper.classList.add("shake");
               }, 1000);
 
-              // 3. Stop shake (biar ada jeda)
+              // 3. Stop shake
               setTimeout(() => {
                 wrapper.classList.remove("shake");
               }, 1800);
 
-              // 4. BARU munculkan teks (lebih telat biar dramatis)
+              // 4. text muncul perlahan
               setTimeout(() => {
                 textExtinction.style.transition = "opacity 2.5s ease";
                 textExtinction.style.opacity = "1";
