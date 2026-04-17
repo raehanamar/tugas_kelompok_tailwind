@@ -375,53 +375,20 @@
         z-index: 2;
       }
 
-      /*Era backgrounds pakai Unsplash, semua publik*/
-      #era-modern {
-        background:
-          linear-gradient(rgba(15, 23, 42, 0.72), rgba(15, 23, 42, 0.72)),
-          url("foto/zamanmodern.png") center/cover;
+      /* Foto sebagai img tag — class helper */
+      .era-bg-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
       }
-      #era-industrial {
-        background:
-          linear-gradient(rgba(10, 10, 10, 0.55), rgba(10, 10, 10, 0.55)),
-          url("foto/industri.png") center/cover;
-      }
-      #era-exploration {
-        background:
-          linear-gradient(rgba(6, 36, 61, 0.72), rgba(6, 36, 61, 0.72)),
-          url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80")
-            center/cover;
-      }
-      #era-kingdom {
-        background:
-          linear-gradient(rgba(8, 20, 31, 0.72), rgba(8, 20, 31, 0.72)),
-          url("foto/kerajaan.png") center/cover;
-      }
-      #era-prehistoric {
-        background:
-          linear-gradient(rgba(34, 15, 5, 0.72), rgba(34, 15, 5, 0.72)),
-          url("foto/api.png") center/cover;
-      }
-      #era-extinction {
-        background:
-          linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)),
-          url("https://images.unsplash.com/photo-1559121635-4d3c20f0d578?auto=format&fit=crop&w=1400&q=80")
-            center/cover;
-      }
-      #era-dinosaur {
-        background:
-          linear-gradient(rgba(2, 35, 24, 0.72), rgba(2, 35, 24, 0.72)),
-          url("foto/dinosaurus.png") center/cover;
-      }
-      #era-early-earth {
-        background:
-          linear-gradient(rgba(30, 5, 2, 0.65), rgba(25, 2, 0, 0.7)),
-          url("foto/bumi-muda.png") center/cover;
-      }
-      #era-space {
-        background:
-          linear-gradient(rgba(2, 6, 23, 0.2), rgba(2, 6, 23, 0.6)),
-          url("foto/tata-surya.png") center/cover;
+      .era-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
       }
       /*Meteor*/
       .meteor {
@@ -590,10 +557,20 @@
         data-year="2026"
         data-bg="#0f172a"
       >
+        <img src="foto/zamanmodern.png" alt="" class="era-bg-img" />
         <div
-          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 -z-[1] bg-blue-500 top-[20%] left-[20%]"
+          class="era-overlay"
+          style="background: rgba(15, 23, 42, 0.72)"
         ></div>
-        <div class="content max-w-[600px] z-10 relative text-center">
+
+        <div
+          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 bg-blue-500 top-[20%] left-[20%]"
+          style="z-index: 2"
+        ></div>
+        <div
+          class="content max-w-[600px] relative text-center"
+          style="z-index: 10"
+        >
           <p
             class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
           >
@@ -610,9 +587,9 @@
           </p>
         </div>
         <div
-          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none fade-up"
+          style="z-index: 5"
         >
-          >
           <span
             class="plane absolute text-[4rem] top-[-180px] left-[-20vw] z-20 animate-fly-real"
             style="filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.7))"
@@ -656,11 +633,19 @@
         data-year="1800 Masehi"
         data-bg="#1c1917"
       >
+        <img src="foto/industri.png" alt="" class="era-bg-img" />
         <div
-          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 -z-[1] bg-orange-500 bottom-[10%] right-[10%]"
+          class="era-overlay"
+          style="background: rgba(10, 10, 10, 0.55)"
+        ></div>
+
+        <div
+          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 bg-orange-500 bottom-[10%] right-[10%]"
+          style="z-index: 2"
         ></div>
         <div
-          class="content max-w-[600px] z-10 relative text-left mr-auto pl-[10%]"
+          class="content max-w-[600px] relative text-left mr-auto pl-[10%]"
+          style="z-index: 10"
         >
           <p
             class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
@@ -678,7 +663,8 @@
           </p>
         </div>
         <div
-          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none fade-up"
+          style="z-index: 5"
         >
           <span
             class="absolute text-[12rem] left-1/2 bottom-0 -translate-x-1/2 animate-factory-pulse"
@@ -702,7 +688,6 @@
             style="left: -10%; bottom: 10px"
             >🚂</span
           >
-          <!-- Smoke stack -->
           <div
             class="absolute animate-stack-sway"
             style="
@@ -793,11 +778,23 @@
         data-year="1500 Masehi"
         data-bg="#082f49"
       >
+        <img
+          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80"
+          alt=""
+          class="era-bg-img"
+        />
         <div
-          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 -z-[1] bg-cyan-500 top-[30%] left-[50%]"
+          class="era-overlay"
+          style="background: rgba(6, 36, 61, 0.72)"
+        ></div>
+
+        <div
+          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 bg-cyan-500 top-[30%] left-[50%]"
+          style="z-index: 2"
         ></div>
         <div
-          class="content max-w-[600px] z-10 relative text-right ml-auto pr-[10%]"
+          class="content max-w-[600px] relative text-right ml-auto pr-[10%]"
+          style="z-index: 10"
         >
           <p
             class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
@@ -815,7 +812,8 @@
           </p>
         </div>
         <div
-          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none fade-up"
+          style="z-index: 5"
         >
           <span class="absolute text-[10rem] animate-wave" style="top: -150px"
             >⛵</span
@@ -846,11 +844,19 @@
         data-year="1000 Masehi"
         data-bg="#14532d"
       >
+        <img src="foto/kerajaan.png" alt="" class="era-bg-img" />
         <div
-          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 -z-[1] bg-green-500 bottom-[20%] right-[30%]"
+          class="era-overlay"
+          style="background: rgba(8, 20, 31, 0.72)"
+        ></div>
+
+        <div
+          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 bg-green-500 bottom-[20%] right-[30%]"
+          style="z-index: 2"
         ></div>
         <div
-          class="content max-w-[600px] z-10 relative text-left mr-auto pl-[10%]"
+          class="content max-w-[600px] relative text-left mr-auto pl-[10%]"
+          style="z-index: 10"
         >
           <p
             class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
@@ -868,7 +874,8 @@
           </p>
         </div>
         <div
-          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none fade-up"
+          style="z-index: 5"
         >
           <span
             class="absolute right-[20%] bottom-[20px] text-[5rem] animate-bob"
@@ -964,11 +971,19 @@
         data-year="10.000 SM"
         data-bg="#451a03"
       >
+        <img src="foto/api.png" alt="" class="era-bg-img" />
         <div
-          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 -z-[1] bg-red-500 top-[40%] left-[10%]"
+          class="era-overlay"
+          style="background: rgba(34, 15, 5, 0.72)"
+        ></div>
+
+        <div
+          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 bg-red-500 top-[40%] left-[10%]"
+          style="z-index: 2"
         ></div>
         <div
-          class="content max-w-[600px] z-10 relative text-right ml-auto pr-[10%]"
+          class="content max-w-[600px] relative text-right ml-auto pr-[10%]"
+          style="z-index: 10"
         >
           <p
             class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
@@ -986,7 +1001,8 @@
           </p>
         </div>
         <div
-          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none fade-up"
+          style="z-index: 5"
         >
           <div
             class="absolute w-[100px] h-[100px] bg-orange-500 rounded-full blur-[40px] right-[30%] bottom-[30px] animate-pulse-fast"
@@ -1022,9 +1038,17 @@
         data-year="66 Juta Tahun Lalu"
         data-bg="#000000"
       >
+        <img
+          src="https://images.unsplash.com/photo-1559121635-4d3c20f0d578?auto=format&fit=crop&w=1400&q=80"
+          alt=""
+          class="era-bg-img"
+        />
+        <div class="era-overlay" style="background: rgba(0, 0, 0, 0.72)"></div>
+
         <div
-          class="content max-w-[600px] z-10 relative text-center"
+          class="content max-w-[600px] relative text-center"
           id="extinction-text"
+          style="z-index: 10"
         >
           <p
             class="fade-up text-sm font-black uppercase tracking-[4px] text-red-500 mb-2.5"
@@ -1053,6 +1077,7 @@
               transparent
             );
             animation-delay: 0.5s;
+            z-index: 3;
           "
         ></div>
         <div
@@ -1066,6 +1091,7 @@
               transparent
             );
             animation: floatParticle 3.5s ease-in infinite 1s;
+            z-index: 3;
           "
         ></div>
       </section>
@@ -1077,10 +1103,20 @@
         data-year="252 Juta Tahun Lalu"
         data-bg="#064e3b"
       >
+        <img src="foto/dinosaurus.png" alt="" class="era-bg-img" />
         <div
-          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 -z-[1] bg-emerald-500 top-[10%] right-[20%]"
+          class="era-overlay"
+          style="background: rgba(2, 35, 24, 0.72)"
         ></div>
-        <div class="content max-w-[600px] z-10 relative text-center">
+
+        <div
+          class="blob absolute w-[600px] h-[600px] rounded-full blur-[100px] opacity-15 bg-emerald-500 top-[10%] right-[20%]"
+          style="z-index: 2"
+        ></div>
+        <div
+          class="content max-w-[600px] relative text-center"
+          style="z-index: 10"
+        >
           <p
             class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
           >
@@ -1097,15 +1133,16 @@
           </p>
         </div>
         <div
-          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none fade-up"
+          style="z-index: 5"
         >
           <span
-            class="absolute left-[5%] bottom-[-10px] text-[13rem] z-[2] animate-dino-walk"
+            class="absolute left-[5%] bottom-[-10px] text-[13rem] animate-dino-walk"
             style="transform: rotate(-2deg)"
             >🦖</span
           >
           <span
-            class="absolute right-[5%] bottom-[20px] text-[8rem] z-[2] animate-dino-float"
+            class="absolute right-[5%] bottom-[20px] text-[8rem] animate-dino-float"
             style="transform: rotate(2deg)"
             >🦕</span
           >
@@ -1127,12 +1164,24 @@
         data-year="4.5 Miliar Tahun Lalu"
         data-bg="#2a0604"
       >
+        <img src="foto/bumi-muda.png" alt="" class="era-bg-img" />
         <div
-          class="absolute w-[800px] h-[800px] rounded-full blur-[100px] opacity-30 -z-[1] pointer-events-none bg-red-600 -bottom-[10%] left-1/2 -translate-x-1/2"
+          class="era-overlay"
+          style="
+            background: linear-gradient(
+              rgba(30, 5, 2, 0.65),
+              rgba(25, 2, 0, 0.7)
+            );
+          "
+        ></div>
+
+        <div
+          class="absolute w-[800px] h-[800px] rounded-full blur-[100px] opacity-30 pointer-events-none bg-red-600 -bottom-[10%] left-1/2 -translate-x-1/2"
+          style="z-index: 2"
         ></div>
         <div
-          class="content max-w-[600px] z-10 relative text-left mr-auto pl-[10%]"
-          style="top: -120px"
+          class="content max-w-[600px] relative text-left mr-auto pl-[10%]"
+          style="z-index: 10; top: -120px"
         >
           <p
             class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
@@ -1150,11 +1199,13 @@
           </p>
         </div>
         <div
-          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none z-[5] fade-up"
+          class="absolute bottom-[15%] w-full flex justify-center pointer-events-none fade-up"
+          style="z-index: 5"
         >
           <div
-            class="absolute bottom-0 w-full h-[200px] z-[1] animate-lava-wave"
+            class="absolute bottom-0 w-full h-[200px] animate-lava-wave"
             style="
+              z-index: 1;
               background: linear-gradient(
                 180deg,
                 rgba(239, 68, 68, 0.8) 0%,
@@ -1214,32 +1265,35 @@
             "
           ></div>
           <div
-            class="absolute w-[200px] h-[200px] rounded-full animate-heat-wave z-0"
+            class="absolute w-[200px] h-[200px] rounded-full animate-heat-wave"
             style="
               left: 20%;
               top: 40%;
               border: 3px solid rgba(249, 115, 22, 0.4);
+              z-index: 0;
             "
           ></div>
           <div
-            class="absolute w-[150px] h-[150px] rounded-full animate-heat-wave-d z-0"
+            class="absolute w-[150px] h-[150px] rounded-full animate-heat-wave-d"
             style="
               right: 25%;
               top: 50%;
               border: 2px solid rgba(239, 68, 68, 0.3);
+              z-index: 0;
             "
           ></div>
           <div
-            class="absolute w-[120px] h-[120px] rounded-full animate-lava-crater z-[2]"
+            class="absolute w-[120px] h-[120px] rounded-full animate-lava-crater"
             style="
               left: 35%;
               bottom: 18%;
               border: 3px solid rgba(239, 68, 68, 0.6);
               box-shadow: inset 0 0 40px rgba(249, 115, 22, 0.5);
+              z-index: 2;
             "
           ></div>
           <div
-            class="absolute w-[180px] h-[180px] rounded-full animate-molten-glow z-[1]"
+            class="absolute w-[180px] h-[180px] rounded-full animate-molten-glow"
             style="
               right: 20%;
               bottom: 15%;
@@ -1248,22 +1302,25 @@
                 rgba(239, 68, 68, 0.5),
                 transparent
               );
+              z-index: 1;
             "
           ></div>
           <div
-            class="absolute w-[100px] h-[100px] rounded-full animate-molten-ripple z-[2]"
+            class="absolute w-[100px] h-[100px] rounded-full animate-molten-ripple"
             style="
               left: 45%;
               bottom: 12%;
               border: 2px solid rgba(249, 115, 22, 0.4);
+              z-index: 2;
             "
           ></div>
           <div
-            class="absolute w-[130px] h-[130px] rounded-full animate-molten-ripple-d z-[1]"
+            class="absolute w-[130px] h-[130px] rounded-full animate-molten-ripple-d"
             style="
               left: 42%;
               bottom: 8%;
               border: 2px solid rgba(239, 68, 68, 0.3);
+              z-index: 1;
             "
           ></div>
         </div>
@@ -1276,76 +1333,21 @@
         data-year="4.6 Miliar Tahun Lalu"
         data-bg="#020617"
       >
-        <div
-          class="absolute inset-0"
-          style="
-            background: radial-gradient(
-              circle at center,
-              #0f172a 0%,
-              #020617 100%
-            );
-          "
-        ></div>
-        <div class="content max-w-[600px] z-10 relative text-center">
-          <p
-            class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5"
-          >
-            Awal Segalanya
-          </p>
-          <h1
-            class="fade-up text-[clamp(2.5rem,6vw,4.5rem)] font-black leading-[1.1] mb-5 -tracking-[1px]"
-            style="text-shadow: 0 0 30px rgba(255, 255, 255, 0.5)"
-          >
-            Kelahiran Tata Surya
-          </h1>
-          <p class="fade-up text-xl font-light text-white/70 leading-relaxed">
-            Debu dan gas kosmik runtuh membentuk bintang raksasa yang
-            menyala—Matahari kita.
-          </p>
+        <img src="foto/tata-surya.png" alt="" class="era-bg-img">
+        <div class="era-overlay" style="background: linear-gradient(rgba(2,6,23,0.2), rgba(2,6,23,0.6))"></div>
+        <div class="absolute inset-0" style="background:radial-gradient(circle at center,rgba(15,23,42,0.5) 0%,rgba(2,6,23,0.3) 100%);z-index:1"></div>
+ 
+        <div class="content max-w-[600px] relative text-center" style="z-index:10">
+          <p class="fade-up text-sm font-black uppercase tracking-[4px] text-white/50 mb-2.5">Awal Segalanya</p>
+          <h1 class="fade-up text-[clamp(2.5rem,6vw,4.5rem)] font-black leading-[1.1] mb-5 -tracking-[1px]" style="text-shadow: 0 0 30px rgba(255,255,255,0.5)">Kelahiran Tata Surya</h1>
+          <p class="fade-up text-xl font-light text-white/70 leading-relaxed">Debu dan gas kosmik runtuh membentuk bintang raksasa yang menyala—Matahari kita.</p>
         </div>
         <!-- Sun -->
-        <div
-          class="absolute w-[300px] h-[300px] bg-white rounded-full animate-spin-360 animate-pulse-slow z-0"
-          style="
-            top: 46%;
-            left: 62%;
-            transform: translate(-50%, -50%);
-            box-shadow:
-              0 0 100px #fef08a,
-              0 0 200px #f59e0b,
-              0 0 400px #ea580c;
-            opacity: 0.8;
-          "
-        ></div>
+        <div class="absolute w-[300px] h-[300px] bg-white rounded-full animate-spin-360 animate-pulse-slow" style="top:46%;left:62%;transform:translate(-50%,-50%);box-shadow:0 0 100px #fef08a,0 0 200px #f59e0b,0 0 400px #ea580c;opacity:0.8;z-index:2"></div>
         <!-- Orbiting planets -->
-        <div
-          class="absolute w-[40px] h-[40px] rounded-full animate-orbit"
-          style="
-            top: 50%;
-            left: 50%;
-            background: radial-gradient(
-              circle,
-              rgba(3, 102, 214, 0.8),
-              transparent
-            );
-            transform-origin: 0 0;
-          "
-        ></div>
-        <div
-          class="absolute w-[30px] h-[30px] rounded-full animate-orbit-reverse"
-          style="
-            top: 50%;
-            left: 50%;
-            background: radial-gradient(
-              circle,
-              rgba(139, 92, 246, 0.6),
-              transparent
-            );
-            transform-origin: 0 0;
-          "
-        ></div>
+        <div class="absolute w-[40px] h-[40px] rounded-full animate-orbit" style="top:50%;left:50%;background:radial-gradient(circle,rgba(3,102,214,0.8),transparent);transform-origin:0 0;z-index:3"></div>
+        <div class="absolute w-[30px] h-[30px] rounded-full animate-orbit-reverse" style="top:50%;left:50%;background:radial-gradient(circle,rgba(139,92,246,0.6),transparent);transform-origin:0 0;z-index:3"></div>
       </section>
-    </main>
 
     <script>
       //1.SCROLL REVEAL (Fade Up
